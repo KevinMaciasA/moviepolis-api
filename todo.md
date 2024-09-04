@@ -35,6 +35,10 @@ _You can create the initial admin using seed data. Only admins should be able to
 ## Entities
 
 ```sql
+CREATE DATABASE moviepolis
+```
+
+```sql
 CREATE TABLE movies (
 id INT AUTO_INCREMENT PRIMARY KEY,
 title VARCHAR(255),
