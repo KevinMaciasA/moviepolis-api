@@ -1,0 +1,26 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "postbuild": "shx cp -r ./src/pages ./dist",
+    "start": "node ./dist/index.js",
+    "preview": "pnpm build && pnpm start"
+  },
+  "keywords": [],
+  "author": " <kevin.macias.a@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/mysql": "^4.3.0",
+    "bcrypt": "^5.1.1",
+    "fastify": "^4.28.1",
+    "hello-world": "file:"
+  },
+  "devDependencies": {
+    "@types/node": "^22.2.0",
+    "shx": "^0.3.4",
+    "typescript": "^5.5.4"
+  }
+}
