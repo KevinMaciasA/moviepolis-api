@@ -35,24 +35,26 @@ _You can create the initial admin using seed data. Only admins should be able to
 ## Entities
 
 ```sql
-CREATE DATABASE moviepolis
+CREATE DATABASE moviepolis;
 ```
 
 ```sql
 CREATE TABLE movies (
-id INT AUTO_INCREMENT PRIMARY KEY,
-title VARCHAR(255),
-description TEXT,
-image_url VARCHAR(2083),
-genre VARCHAR(50),
-showtime DATETIME,
-duration TIME
+    id CHAR(26) PRIMARY KEY NOT NULL, -- ULID
+    title VARCHAR(255),
+    description TEXT,
+    image_url VARCHAR(2083),
+    genre VARCHAR(50),
+    showtime DATETIME,
+    duration TIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 ```
 
 ```sql
 CREATE TABLE users (
-    id CHAR(26) PRIMARY KEY NOT NULL,  -- ULID
+    id CHAR(26) PRIMARY KEY NOT NULL,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(60) NOT NULL,  -- bcrypt hash length
@@ -69,5 +71,30 @@ CREATE TABLE users (
     refresh_token_expires DATETIME,
     jwt_revoked_at DATETIME,
     last_jwt_issue DATETIME
+);
+```
+
+```sql
+CREATE TABLE booked_tickets (
+    id CHAR(26) PRIMARY KEY NOT NULL,
+    user_id CHAR(26) NOT NULL,
+    movie_id CHAR(26) NOT NULL,
+    booking_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    number_of_tickets INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+);
+```
+
+```sql
+CREATE TABLE seats (
+    id CHAR(26) PRIMARY KEY NOT NULL,
+    movie_id CHAR(26) NOT NULL,
+    row_letter CHAR(1) NOT NULL,
+    col_number TINYINT UNSIGNED NOT NULL,
+    is_booked BOOLEAN DEFAULT FALSE,
+    booked_ticket_id CHAR(26),  -- Reference to booked_tickets table if booked
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
+    FOREIGN KEY (booked_ticket_id) REFERENCES booked_tickets(id) ON DELETE SET NULL
 );
 ```
