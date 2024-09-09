@@ -1,7 +1,6 @@
 import fastify from 'fastify'
 import errorHandler from './errors/handler'
-import rootRoute from './routes/rootRoute'
-import pagesRoute from './routes/pagesRoute'
+import rootRoute from './controllers/rootController'
 import mysqlPlugin from '@fastify/mysql'
 import { db, initDatabase } from './repositories/database'
 import MovieRepository from './repositories/movieRepository'
