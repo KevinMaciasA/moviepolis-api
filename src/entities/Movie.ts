@@ -50,14 +50,36 @@ class Movie {
       description: this.description,
       imageUrl: this.imageUrl,
       genre: this.genre,
-      showtime: this.showtime.toISOString,
+      showtime: this.showtime.toISOString(),
       duration: this.duration,
-      createdAt: this.createdAt.toISOString,
-      updatedAt: this.updatedAt.toISOString,
+      createdAt: this.createdAt.toISOString(),
+      updatedAt: this.updatedAt.toISOString(),
     };
   }
+
+  toDTO(): MovieDTO {
+    return {
+      id: this.id,
+      title: this.title,
+      description: this.description,
+      imageUrl: this.imageUrl,
+      genre: this.genre,
+      showtime: this.showtime.toISOString(),
+      duration: this.duration,
+    }
+  }
+}
+
+interface MovieDTO {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  genre: string;
+  showtime: string;
+  duration: string;
 }
 
 export default Movie;
 
-export { MovieParams };
+export { MovieParams, MovieDTO };

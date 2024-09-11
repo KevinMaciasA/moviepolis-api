@@ -1,9 +1,10 @@
 import fastify from 'fastify'
 import errorHandler from './errors/handler'
-import rootRoute from './controllers/rootController'
+import rootController from './controllers/rootController'
 import mysqlPlugin from '@fastify/mysql'
-import { db, initDatabase } from './repositories/database'
+import { initDatabase } from './repositories/database'
 import MovieRepository from './repositories/movieRepository'
+import { moviesController } from './controllers/moviesController'
 
 const server = fastify()
 
@@ -11,8 +12,8 @@ server.register(mysqlPlugin, {
   promise: true,
   connectionString: "mysql://root:password@localhost/moviepolis",
 })
-server.register(rootRoute, { prefix: "/v1" })
-// server.register(pagesRoute, { prefix: "/v1/pages" })
+server.register(rootController, { prefix: "/v1" })
+server.register(moviesController, { prefix: "/v1/movies" })
 
 server.after(() => {
   initDatabase(server)
