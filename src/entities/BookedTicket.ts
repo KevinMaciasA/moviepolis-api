@@ -1,3 +1,5 @@
+import { ulid } from "ulid";
+
 interface BookedTicketParams {
   id?: string;
   userId: string;
@@ -14,7 +16,7 @@ class BookedTicket {
   numberOfTickets: number;
 
   constructor(params: BookedTicketParams) {
-    this.id = params.id ?? "" // TODO: ULID();
+    this.id = params.id ?? ulid();
     this.userId = params.userId;
     this.movieId = params.movieId;
     this.bookingTime = params.bookingTime ?? new Date();

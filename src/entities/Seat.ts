@@ -1,3 +1,5 @@
+import { ulid } from "ulid";
+
 interface SeatParams {
   id?: string;
   movieId: string;
@@ -16,7 +18,7 @@ class Seat {
   bookedTicketId: string | null;  // Foreign key reference to `booked_tickets` table
 
   constructor(params: SeatParams) {
-    this.id = params.id ?? "" // TODO: ULID;
+    this.id = params.id ?? ulid();
     this.movieId = params.movieId;
     this.rowLetter = params.rowLetter;
     this.colNumber = params.colNumber;

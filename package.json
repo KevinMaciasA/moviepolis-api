@@ -16,7 +16,8 @@
     "@fastify/mysql": "^4.3.0",
     "bcrypt": "^5.1.1",
     "fastify": "^4.28.1",
-    "hello-world": "file:"
+    "hello-world": "file:",
+    "ulid": "^2.3.0"
   },
   "devDependencies": {
     "@types/node": "^22.2.0",

@@ -20,6 +20,9 @@ importers:
       hello-world:
         specifier: 'file:'
         version: 'file:'
+      ulid:
+        specifier: ^2.3.0
+        version: 2.3.0
     devDependencies:
       '@types/node':
         specifier: ^22.2.0
@@ -543,6 +546,10 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  ulid@2.3.0:
+    resolution: {integrity: sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==}
+    hasBin: true
+
   undici-types@6.13.0:
     resolution: {integrity: sha512-xtFJHudx8S2DSoujjMd1WeWvn7KKWFRESZTMeL1RptAYERu29D6jphMjjY+vn96jvN3kVPDNxU/E13VTaXj6jg==}
 
@@ -802,7 +809,11 @@ snapshots:
   'hello-world@file:':
     dependencies:
       '@fastify/mysql': 4.3.0
+      bcrypt: 5.1.1
       fastify: 4.28.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
 
   https-proxy-agent@5.0.1:
     dependencies:
@@ -1073,6 +1084,8 @@ snapshots:
   tr46@0.0.3: {}
 
   typescript@5.5.4: {}
+
+  ulid@2.3.0: {}
 
   undici-types@6.13.0: {}
 

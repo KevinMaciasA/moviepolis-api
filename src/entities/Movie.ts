@@ -1,3 +1,5 @@
+import { ulid } from "ulid";
+
 interface MovieParams {
   id?: string;
   title: string;
@@ -22,7 +24,7 @@ class Movie {
   updatedAt: Date;
 
   constructor(params: MovieParams) {
-    this.id = params.id || ""; // ?? generateULID() TODO: 
+    this.id = params.id || ulid()
     this.title = params.title;
     this.description = params.description;
     this.imageUrl = params.imageUrl;

@@ -1,3 +1,5 @@
+import { ulid } from "ulid";
+
 interface UserParams {
   id?: string;
   name: string;
@@ -38,7 +40,7 @@ class User {
   lastJwtIssue: Date | null;
 
   constructor(params: UserParams) {
-    this.id = params.id ?? "" // TODO: ULID;
+    this.id = params.id ?? ulid();
     this.name = params.name;
     this.email = params.email;
     this.passwordHash = params.passwordHash;
