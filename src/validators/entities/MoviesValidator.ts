@@ -1,22 +1,13 @@
-// src/validators/MovieValidator.ts
-import Movie from "../../entities/Movie";
+import { z } from "zod"
 
-class MovieValidator {
-  static validate(movieData: Partial<Movie>): { valid: boolean; errors?: string[] } {
-    const errors: string[] = [];
-
-    if (!movieData.title) errors.push("Title is required.");
-    if (!movieData.description) errors.push("Description is required.");
-    if (!movieData.imageUrl) errors.push("Image URL is required.");
-    if (!movieData.genre) errors.push("Genre is required.");
-    if (!movieData.showtime) errors.push("Showtime is required.");
-    if (!movieData.duration) errors.push("Duration is required.");
-
-    return {
-      valid: errors.length === 0,
-      errors,
-    };
-  }
-}
-
-export default MovieValidator;
+export const MovieValidator = z.object({
+  id: z.string().ulid(),
+  title: z.string().min(1).max(255),
+  description: z.string().min(1),
+  imageUrl: z.string().url().max(2083),
+  genre: z.string().min(1).max(50),
+  showtime: z.date(),
+  duration: z.string().time(),
+  createdAt: z.date().default(() => new Date()),
+  updatedAt: z.date().default(() => new Date()),
+})

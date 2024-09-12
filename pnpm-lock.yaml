@@ -23,6 +23,9 @@ importers:
       ulid:
         specifier: ^2.3.0
         version: 2.3.0
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@types/node':
         specifier: ^22.2.0
@@ -571,6 +574,9 @@ packages:
   yallist@4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
 
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+
 snapshots:
 
   '@fastify/ajv-compiler@3.6.0':
@@ -811,6 +817,7 @@ snapshots:
       '@fastify/mysql': 4.3.0
       bcrypt: 5.1.1
       fastify: 4.28.1
+      ulid: 2.3.0
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -1105,3 +1112,5 @@ snapshots:
   wrappy@1.0.2: {}
 
   yallist@4.0.0: {}
+
+  zod@3.23.8: {}

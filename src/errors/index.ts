@@ -1,3 +1,5 @@
+import { ZodIssue } from "zod";
+
 export class MovieNotFoundError extends Error {
   constructor(message: string = "Movie not found") {
     super(message);
@@ -6,7 +8,7 @@ export class MovieNotFoundError extends Error {
 }
 
 export class InvalidParametersError extends Error {
-  constructor(message: string = "Invalid parameters provided", errors?: string[]) {
+  constructor(message: string = "Invalid parameters provided", errors?: ZodIssue[]) {
     super(message);
     this.name = "InvalidParametersError";
   }
