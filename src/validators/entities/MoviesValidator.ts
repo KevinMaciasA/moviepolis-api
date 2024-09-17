@@ -6,8 +6,10 @@ export const MovieValidator = z.object({
   description: z.string().min(1),
   imageUrl: z.string().url().max(2083),
   genre: z.string().min(1).max(50),
-  showtime: z.date(),
+  showtime: z.string().datetime(),
   duration: z.string().time(),
   createdAt: z.date().default(() => new Date()),
   updatedAt: z.date().default(() => new Date()),
 })
+
+export const NewMovieValidator = MovieValidator.omit({ id: true })
