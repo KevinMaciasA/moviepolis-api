@@ -1,27 +1,30 @@
 import { db } from "./database";
-import Movie from "../entities/Movie";
+import Movie, { MovieObject } from "../entities/Movie";
 
+// TODO: make repository responses camelCase
+// make a db wrapper with options, {camelCase: true}
+// then case the responses to camelCase
 class MovieRepository {
   private table: string = 'movies'
 
-  async getAll(): Promise<Movie[]> {
+  async getAll(): Promise<MovieObject[]> {
     const query = `SELECT * FROM ${this.table}`;
     const [rows] = await db.execute(query);
-    return rows as Movie[];
+    return rows as MovieObject[];
   }
 
-  async searchById(id: string): Promise<Movie | null> {
+  async searchById(id: string): Promise<MovieObject | null> {
     const query = `SELECT * FROM ${this.table} WHERE id = ?`
     const [rows] = await db.execute(query, [id])
-    const movies = rows as Movie[];
+    const movies = rows as MovieObject[];
     return movies.length > 0 ? movies[0] : null;
   }
 
-  async searchByTitle(title: string): Promise<Movie[] | null> {
+  async searchByTitle(title: string): Promise<MovieObject[] | null> {
     const query = `SELECT * FROM ${this.table} WHERE title LIKE ?`
     const searchTerm = `%${title}%`
     const [rows] = await db.execute(query, [searchTerm]);
-    const movies = rows as Movie[];
+    const movies = rows as MovieObject[];
     return movies.length > 0 ? movies : null;
   }
 
@@ -31,7 +34,7 @@ class MovieRepository {
     return !!movie
   }
 
-  async add(movie: Movie): Promise<any> {
+  async add(movie: MovieObject | Movie): Promise<any> {
     const query = `INSERT INTO ${this.table} (id, title, description, image_url, genre,
     showtime, duration, created_at, updated_at)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -50,11 +53,11 @@ class MovieRepository {
     return result;
   }
 
-  async update(movie: Movie): Promise<any> {
+  async update(movie: MovieObject | Movie): Promise<any> {
     const query = `UPDATE ${this.table} SET title = ?, description = ?, image_url = ?,
     genre = ?, showtime = ?, duration = ?, created_at = ?, updated_at = ? WHERE id = ?`;
 
-    const [result] = await db.execute(query, [
+    const params = [
       movie.title,
       movie.description,
       movie.imageUrl,
@@ -64,7 +67,9 @@ class MovieRepository {
       movie.createdAt,
       movie.updatedAt,
       movie.id,
-    ]);
+    ]
+
+    const [result] = await db.execute(query, params);
     return result;
   }
 

@@ -20,6 +20,9 @@ importers:
       hello-world:
         specifier: 'file:'
         version: 'file:'
+      mysql2:
+        specifier: ^3.11.3
+        version: 3.11.3
       ulid:
         specifier: ^2.3.0
         version: 2.3.0
@@ -309,9 +312,9 @@ packages:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
 
-  lru-cache@8.0.5:
-    resolution: {integrity: sha512-MhWWlVnuab1RG5/zMRRcVGXZLCXrZTgfwMikgzCegsPnG62yDQo5JnqKkrK4jO5iKqDAZGItAqN5CtKBCBWRUA==}
-    engines: {node: '>=16.14'}
+  lru.min@1.1.0:
+    resolution: {integrity: sha512-86xXMB6DiuKrTqkE/lRL0drlNh568awttBPJ7D66fzDHpy6NC5r3N+Ly/lKCS2zjmeGyvFDx670z0cD0PVBwGA==}
+    engines: {bun: '>=1.0.0', deno: '>=1.30.0', node: '>=8.0.0'}
 
   make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
@@ -343,8 +346,8 @@ packages:
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
-  mysql2@3.11.0:
-    resolution: {integrity: sha512-J9phbsXGvTOcRVPR95YedzVSxJecpW5A5+cQ57rhHIFXteTP10HCs+VBjS7DHIKfEaI1zQ5tlVrquCd64A6YvA==}
+  mysql2@3.11.3:
+    resolution: {integrity: sha512-Qpu2ADfbKzyLdwC/5d4W7+5Yz7yBzCU05YWt5npWzACST37wJsB23wgOSo00qi043urkiRwXtEvJc9UnuLX/MQ==}
     engines: {node: '>= 8.0'}
 
   named-placeholders@1.1.3:
@@ -598,7 +601,7 @@ snapshots:
   '@fastify/mysql@4.3.0':
     dependencies:
       fastify-plugin: 4.5.1
-      mysql2: 3.11.0
+      mysql2: 3.11.3
 
   '@mapbox/node-pre-gyp@1.0.11':
     dependencies:
@@ -818,6 +821,7 @@ snapshots:
       bcrypt: 5.1.1
       fastify: 4.28.1
       ulid: 2.3.0
+      zod: 3.23.8
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -870,7 +874,7 @@ snapshots:
 
   lru-cache@7.18.3: {}
 
-  lru-cache@8.0.5: {}
+  lru.min@1.1.0: {}
 
   make-dir@3.1.0:
     dependencies:
@@ -897,14 +901,14 @@ snapshots:
 
   ms@2.1.2: {}
 
-  mysql2@3.11.0:
+  mysql2@3.11.3:
     dependencies:
       aws-ssl-profiles: 1.1.2
       denque: 2.1.0
       generate-function: 2.3.1
       iconv-lite: 0.6.3
       long: 5.2.3
-      lru-cache: 8.0.5
+      lru.min: 1.1.0
       named-placeholders: 1.1.3
       seq-queue: 0.0.5
       sqlstring: 2.3.3
